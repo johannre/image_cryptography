@@ -1,0 +1,24 @@
+Image-Cryptography:
+~~~~~~~~~~~~~~~~~~~
+
+	Description of the Program: This project can hide short text-messages by converting the text into a binary number and hiding this number in the last digits
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~ of the RGB-values of the pixels in the image.
+	                            Also, if the user has a picture with a hidden message, it encrypts the message and prints it in the command line.
+	                            That way, every owner of that program has the possibility to send each other pictures with hidden messages and only people who also
+	                            own that can read the message (of course it's not 100% secure, it's just a fun project).
+
+
+	HOW TO GET STARTED:
+	~~~~~~~~~~~~~~~~~~~
+
+	Compiling: The compilation works on linux-based systems. To compile, libpng has to be installed.
+	~~~~~~~~~~ Enter make to compile.
+
+	Crypting: After compiling, you can crypt with the command
+	~~~~~~~~~ ./crypt <source-picture-name>.png <new-picture-with-hidden-data>.png <file-with-message-to-crypt>
+	          The <source-picture-name>.png has to exist already, the <new-picture-with-hidden-data>.png will be created by the program.
+	          The new picture <new-picture-with-hidden-data>.png will seem equally to the source-picture, but secretly contains the message.
+
+	Encrypting: After compiling, you can encrypt a picture you know it contains hidden information with the command
+	~~~~~~~~~~~ ./encrypt <name-of-the-picture-with-hidden-data>.png
+		    After executing the program, the decoded message will be printed to the screen.
