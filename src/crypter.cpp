@@ -3,6 +3,8 @@
 using namespace std;
 using namespace png;
 
+extern bool size_error;
+
 crypter::crypter(std::string dataname) : dataname(dataname), size(0), data(nullptr) {
 
 				//getting size of the file-data
@@ -12,6 +14,12 @@ crypter::crypter(std::string dataname) : dataname(dataname), size(0), data(nullp
 
 				size_of_size_in_byte = size * 8;
 				size--;
+
+				if (size > 159) {
+					cout << "failed to hide text: text is too long (max. 159 signs)" << endl;
+					size_error = true;
+				}
+
 				data = new char[size];
 
 				//reading the data from the file
@@ -24,9 +32,11 @@ void crypter::make_size_binary() { size_in_binary = std::bitset<9>(size).to_stri
 
 void crypter::hide_data_in_picture(my_image::image &pic) {
 
-	make_size_binary();
-	make_binary();
-	hide_information(pic);
+	if (!size_error) {
+		make_size_binary();
+		make_binary();
+		hide_information(pic);
+	}
 
 }
 

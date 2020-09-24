@@ -7,6 +7,9 @@
 using namespace std;
 using namespace png;
 
+//if the entered text-size is too high, this turns true and the rest of the program won't be executed
+bool size_error = false;
+
 //if all inputs have the right format, exist when they should exist and so on, the function returns true, otherwise false.
 bool check_if_input_is_correct(const string &source_picture, const string &picture_with_message, const string &secret_file) {
 	
@@ -57,8 +60,10 @@ int main (int argc, char **argv) {
 			//hide the data in the picture 
 			my_image::image pic(source_picture);
 			crypter hide_the_info(secret_file);
-			hide_the_info.hide_data_in_picture(pic);
-			pic.save(picture_with_message);
+			if (!size_error) {
+				hide_the_info.hide_data_in_picture(pic);
+				pic.save(picture_with_message);
+			}
 
 		}
 	}
